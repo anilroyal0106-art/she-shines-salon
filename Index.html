@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>She Shines Salon</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#101010;color:#f7f1e5;font-family:Arial,sans-serif}
+header{padding:18px;background:#080808;border-bottom:1px solid #b89550;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+.brand{color:#e6c477;font-weight:bold;letter-spacing:2px;font-size:20px}
+nav{display:flex;gap:7px;flex-wrap:wrap}
+button{cursor:pointer;border:1px solid #b89550;border-radius:20px;padding:10px 15px;background:transparent;color:#f7f1e5}
+button.gold{background:#d6b36a;color:#111;border:0;font-weight:bold}
+button:disabled{opacity:.6;cursor:not-allowed}
+main{max-width:1000px;margin:auto;padding:24px}
+.hero{padding:55px 25px;border-radius:16px;background:linear-gradient(90deg,#000d,#0005),url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1400&q=80') center/cover}
+h1{font-size:clamp(32px,7vw,58px);margin:10px 0}
+h2{color:#e6c477}
+section{margin-bottom:28px}
+.card{background:#1b1b1b;border:1px solid #443a28;border-radius:14px;padding:20px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.service{padding:12px}
+.service img{width:100%;height:160px;object-fit:cover;border-radius:8px;background:#080808}
+.service h3{color:#f7f1e5;margin:12px 0 6px}
+.service p{color:#bdb7ac;font-size:14px;line-height:1.5}
+.service .price{color:#e6c477;font-weight:bold}
+label{display:block;color:#e6c477;margin:12px 0 5px}
+input,select,textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #514735;background:#0d0d0d;color:white}
+textarea{min-height:80px;resize:vertical}
+.hidden{display:none!important}
+.page{display:none}
+.page.active{display:block}
+.notice{color:#e6c477;overflow-wrap:anywhere;margin-top:12px;line-height:1.6}
+.small{color:#bdb7ac;font-size:14px;line-height:1.6}
+.status{display:inline-block;border:1px solid #b89550;border-radius:20px;padding:5px 10px;color:#e6c477;font-size:12px;margin:5px 0}
+.booking-item{background:#111;border:1px solid #443a28;border-radius:12px;padding:16px;margin:12px 0;overflow-wrap:anywhere}
+.booking-item h3{color:#e6c477;margin-top:0}
+.booking-item p{line-height:1.5}
+.final-time{color:#9ee0b0;font-weight:bold}
+.admin-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+.admin-actions button{grid-column:1/-1}
+footer{text-align:center;padding:25px;border-top:1px solid #443a28;color:#bdb7ac;line-height:1.7}
+a{color:#e6c477}
+@media(max-width:600px){
+  main{padding:14px}
+  header{padding:14px}
+  .hero{padding:35px 18px}
+  .admin-actions{grid-template-columns:1fr}
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="brand">SHE SHINES ✦</div>
+  <nav>
+    <button type="button" data-page="home">Home</button>
+    <button type="button" data-page="services">Services</button>
+    <button type="button" data-page="booking">Book Now</button>
+    <button type="button" data-page="mybooking">My Booking</button>
+    <button type="button" data-page="adminPin">Admin</button>
+  </nav>
+</header>
+
+<main>
+  <section id="home" class="page active">
+    <div class="hero">
+      <p class="small">BEAUTY • STYLE • CONFIDENCE</p>
+      <h1>Feel beautiful.<br><span style="color:#e6c477">Shine every day.</span></h1>
+      <p>Your beauty, our passion.</p>
+      <button type="button" class="gold" data-page="booking">Book an Appointment</button>
+      <button type="button" data-page="services">Explore Services</button>
+    </div>
+    <h2>Welcome to She Shines</h2>
+    <p class="small">Discover beauty and care, created especially for you.</p>
+  </section>
+
+  <section id="services" class="page">
+    <h2>Our Services</h2>
+    <p class="small">Choose a service and book your appointment.</p>
+    <div class="grid">
+      <div class="card service">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80" alt="Hair styling" loading="lazy">
+        <h3>Hair Styling</h3>
+        <p>Professional styling for your everyday and special looks.</p>
+        <div class="price">Price: Contact salon</div>
+        <button type="button" data-book-service="Hair Styling">Book this service</button>
+      </div>
+      <div class="card service">
+        <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&fit=crop&w=800&q=80" alt="Makeup" loading="lazy">
+        <h3>Makeup</h3>
+        <p>Makeup services for celebrations and special occasions.</p>
+        <div class="price">Price: Contact salon</div>
+        <button type="button" data-book-service="Makeup">Book this service</button>
+      </div>
+      <div class="card service">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&fit=crop&w=800&q=80" alt="Hair cut" loading="lazy">
+        <h3>Hair Cut</h3>
+        <p>A fresh haircut to match your style.</p>
+        <div class="price">Price: Contact salon</div>
+        <button type="button" data-book-service="Hair Cut">Book this service</button>
+      </div>
+      <div class="card service">
+        <img src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=800&q=80" alt="Nail care" loading="lazy">
+        <h3>Nail Care</h3>
+        <p>Neat nail care with a polished finish.</p>
+        <div class="price">Price: Contact salon</div>
+        <button type="button" data-book-service="Nail Care">Book this service</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="booking" class="page">
+    <h2>Book Your Appointment</h2>
+    <form id="bookingForm" class="card">
+      <label for="name">Name</label>
+      <input id="name" autocomplete="name" maxlength="80" required>
+
+      <label for="phone">Phone</label>
+      <input id="phone" type="tel" autocomplete="tel" maxlength="20" required>
+
+      <label for="serviceSelect">Service</label>
+      <select id="serviceSelect" required>
+        <option value="">Choose service</option>
+        <option>Hair Styling</option>
+        <option>Makeup</option>
+        <option>Hair Cut</option>
+        <option>Nail Care</option>
+        <option>Other</option>
+      </select>
+
+      <label for="date">Preferred Date</label>
+      <input id="date" type="date" required>
+
+      <label for="time">Preferred Time</label>
+      <input id="time" type="time" required>
+
+      <label for="notes">Notes (optional)</label>
+      <textarea id="notes" maxlength="500" placeholder="Any special request?"></textarea>
+
+      <p class="small">Your selected date and time are preferences. The salon will confirm the final appointment.</p>
+      <button id="bookingSubmit" class="gold" type="submit">Submit Booking</button>
+      <div id="bookingMsg" class="notice" role="status" aria-live="polite"></div>
+      <div id="bookingResult"></div>
+    </form>
+  </section>
+
+  <section id="mybooking" class="page">
+    <h2>My Booking</h2>
+    <form id="lookupForm" class="card">
+      <label for="bookingId">Booking ID</label>
+      <input id="bookingId" required placeholder="Enter your Booking ID">
+      <button class="gold" type="submit">Check Status</button>
+      <div id="lookupMsg" class="notice" role="status" aria-live="polite"></div>
+      <div id="lookupResult"></div>
+    </form>
+    <p class="small">Booking status can be checked on the device/browser where you created the booking. Keep your Booking ID safe.</p>
+  </section>
+
+  <section id="adminPin" class="page">
+    <h2>Admin Access</h2>
+    <form id="adminPinForm" class="card">
+      <label for="adminPinInput">Enter Admin PIN</label>
+      <input id="adminPinInput" type="password" inputmode="numeric" maxlength="4" pattern="[0-9]{4}" placeholder="4-digit PIN" autocomplete="off" required>
+      <button class="gold" type="submit">Unlock Admin</button>
+      <div id="adminPinMsg" class="notice" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+
+  <section id="admin" class="page">
+    <h2>Admin Panel</h2>
+    <form id="adminForm" class="card">
+      <label for="adminEmail">Admin email</label>
+      <input id="adminEmail" type="email" autocomplete="username" value="anilroyal0106@gmail.com" required>
+
+      <label for="adminPassword">Admin password</label>
+      <input id="adminPassword" type="password" autocomplete="current-password" required>
+
+      <button id="adminSubmit" class="gold" type="submit">Sign In</button>
+      <button id="logoutBtn" type="button" class="hidden">Sign Out</button>
+      <div id="adminMsg" class="notice" role="status" aria-live="polite"></div>
+    </form>
+
+    <div class="card">
+      <h3>Booking Requests</h3>
+      <button id="refreshBtn" type="button">Refresh Bookings</button>
+      <div id="adminBookings" class="small">Sign in to see bookings.</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Visit Us</h2>
+    <p>21, 2nd Main Rd, Zamin Pallavaram, Perumal Nagar, Chennai, Tamil Nadu 600117</p>
+    <p>10:00 AM – 8:30 PM</p>
+    <p><a href="tel:+919884870577">+91 98848 70577</a></p>
+    <p><a href="https://wa.me/919884870577" target="_blank" rel="noopener">WhatsApp Us</a></p>
+  </section>
+</main>
+
+<footer>She Shines Hair &amp; Beauty Salon</footer>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+
+<script>
+(function(){
+  "use strict";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyCCvGukAqe_r8kmL0LcvXISZSoovZc2s6c",
+    authDomain: "she-shines.firebaseapp.com",
+    projectId: "she-shines",
+    storageBucket: "she-shines.firebasestorage.app",
+    messagingSenderId: "83671888805",
+    appId: "1:83671888805:web:2c9991923b10b2f16bee4c",
+    measurementId: "G-JTBM571X7B"
+  };
+
+  const ADMIN_EMAIL = "anilroyal0106@gmail.com";
+  const ADMIN_PIN = "0414";
+
+  const $ = function(id){
+    return document.getElementById(id);
+  };
+
+  let auth = null;
+  let db = null;
+  let firebaseReady = false;
+
+  function showPage(pageId){
+    document.querySelectorAll(".page").forEach(function(page){
+      page.classList.toggle("active", page.id === pageId);
+    });
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll("[data-page]").forEach(function(button){
+    button.addEventListener("click", function(){
+      const targetPage = button.dataset.page;
+
+      if(targetPage === "adminPin"){
+        $("adminPinInput").value = "";
+        setMessage("adminPinMsg", "");
+      }
+
+      showPage(targetPage);
+    });
+  });
+
+  $("adminPinForm").addEventListener("submit", function(event){
+    event.preventDefault();
+
+    if($("adminPinInput").value === ADMIN_PIN){
+      $("adminPinInput").value = "";
+      setMessage("adminPinMsg", "");
+      showPage("admin");
+    }else{
+      setMessage("adminPinMsg", "Incorrect PIN. Try again.");
+      $("adminPinInput").value = "";
+      $("adminPinInput").focus();
+    }
+  });
+
+  document.querySelectorAll("[data-book-service]").forEach(function(button){
+    button.addEventListener("click", function(){
+      $("serviceSelect").value = button.dataset.bookService;
+      showPage("booking");
+    });
+  });
+
+  function setMessage(id, text){
+    $(id).textContent = text;
+  }
+
+  function escapeHtml(value){
+    return String(value == null ? "" : value).replace(/[&<>"']/g, function(character){
+      return {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+      }[character];
+    });
+  }
+
+  function getErrorMessage(error){
+    const code = error && error.code ? error.code : "";
+
+    if(code === "permission-denied"){
+      return "Permission denied. Firebase Firestore Rules ni check cheyyi.";
+    }
+    if(code === "auth/operation-not-allowed"){
+      return "Firebase Authentication lo Anonymous and Email/Password sign-in enable cheyyi.";
+    }
+    if(code === "auth/invalid-credential" ||
+       code === "auth/wrong-password" ||
+       code === "auth/user-not-found"){
+      return "Admin email/password correct ga enter cheyyi.";
+    }
+    if(code === "auth/unauthorized-domain"){
+      return "Website domain ni Firebase Authentication Authorized domains lo add cheyyali.";
+    }
+    if(code === "auth/network-request-failed"){
+      return "Internet connection check chesi malli try cheyyi.";
+    }
+
+    return error && error.message ? error.message : "Something went wrong. Please try again.";
+  }
+
+  function ensureFirebase(){
+    if(!firebaseReady || !auth || !db){
+      throw new Error("Firebase ready ga ledu. Page refresh chesi try cheyyi.");
+    }
+  }
+
+  async function getCustomerUser(){
+    ensureFirebase();
+
+    if(!auth.currentUser){
+      await auth.signInAnonymously();
+    }
+    if(!auth.currentUser){
+      throw new Error("Customer session create avvaledu.");
+    }
+    return auth.currentUser;
+  }
+
+  async function initializeFirebase(){
+    try{
+      if(!window.firebase){
+        throw new Error("Firebase scripts load avvaledu. Internet check cheyyi.");
+      }
+
+      if(!firebase.apps.length){
+        firebase.initializeApp(firebaseConfig);
+      }
+
+      auth = firebase.auth();
+      db = firebase.firestore();
+      firebaseReady = true;
+
+      try{
+        if(!auth.currentUser){
+          await auth.signInAnonymously();
+        }
+      }catch(anonymousError){
+        console.warn("Anonymous sign-in issue:", anonymousError);
+      }
+
+      setMessage("bookingMsg", "");
+    }catch(error){
+      firebaseReady = false;
+      setMessage("bookingMsg", "Firebase error: " + getErrorMessage(error));
+      setMessage("adminMsg", "Firebase error: " + getErrorMessage(error));
+    }
+  }
+
+  const now = new Date();
+  const localToday = new Date(now.getTime() - now.getTimezoneOffset() * 60000)
+    .toISOString()
+    .slice(0, 10);
+
+  $("date").min = localToday;
+
+  $("bookingForm").addEventListener("submit", async function(event){
+    event.preventDefault();
+
+    const submitButton = $("bookingSubmit");
+    submitButton.disabled = true;
+    setMessage("bookingMsg", "Submitting booking...");
+    $("bookingResult").innerHTML = "";
+
+    try{
+      const name = $("name").value.trim();
+      const phone = $("phone").value.trim();
+      const service = $("serviceSelect").value;
+      const appointmentDate = $("date").value;
+      const appointmentTime = $("time").value;
+      const notes = $("notes").value.trim();
+
+      if(!name || !phone || !service || !appointmentDate || !appointmentTime){
+        throw new Error("Please fill all required fields.");
+      }
+      if(appointmentDate < localToday){
+        throw new Error("Past date select cheyyakudadhu.");
+      }
+
+      const user = await getCustomerUser();
+
+      const bookingData = {
+        customerName: name,
+        customerPhone: phone,
+        service: service,
+        appointmentDate: appointmentDate,
+        appointmentTime: appointmentTime,
+        notes: notes,
+        status: "Pending",
+        finalDate: "",
+        finalTime: "",
+        ownerUid: user.uid,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+      };
+
+      const documentRef = await db.collection("bookings").add(bookingData);
+
+      $("bookingId").value = documentRef.id;
+      $("bookingForm").reset();
+      $("date").min = localToday;
+      setMessage("bookingMsg", "Booking request sent successfully!");
+
+      $("bookingResult").innerHTML =
+        '<div class="booking-item">' +
+          '<h3>Your Booking ID</h3>' +
+          '<p style="font-size:20px;color:#e6c477;font-weight:bold;overflow-wrap:anywhere">' +
+            escapeHtml(documentRef.id) +
+          '</p>' +
+          '<p class="small">Ee Booking ID ni save chesuko. Salon confirm chesaka status update avutundi.</p>' +
+        '</div>';
+
+    }catch(error){
+      console.error(error);
+      setMessage("bookingMsg", "Booking failed: " + getErrorMessage(error));
+    }finally{
+      submitButton.disabled = false;
+    }
+  });
+
+  $("lookupForm").addEventListener("submit", async function(event){
+    event.preventDefault();
+
+    setMessage("lookupMsg", "Checking booking...");
+    $("lookupResult").innerHTML = "";
+
+    try{
+      const user = await getCustomerUser();
+      const bookingId = $("bookingId").value.trim();
+
+      if(!bookingId){
+        throw new Error("Booking ID enter cheyyi.");
+      }
+
+      const snapshot = await db.collection("bookings").doc(bookingId).get();
+
+      if(!snapshot.exists){
+        setMessage("lookupMsg", "Booking not found. Booking ID check cheyyi.");
+        return;
+      }
+
+      const booking = snapshot.data();
+      const isAdmin = user.email &&
+        user.email.toLowerCase() === ADMIN_EMAIL.toLowerCase();
+
+      if(booking.ownerUid !== user.uid && !isAdmin){
+        setMessage("lookupMsg", "Ee booking vere device/account lo create ayyindi. Original booking device lo check cheyyi.");
+        return;
+      }
+
+      let finalAppointment = "";
+
+      if(booking.status === "Confirmed" && booking.finalDate && booking.finalTime){
+        finalAppointment =
+          '<p class="final-time">Confirmed appointment: ' +
+          escapeHtml(booking.finalDate) + " at " +
+          escapeHtml(booking.finalTime) + '</p>';
+      }else{
+        finalAppointment = '<p class="small">Final appointment time inka confirm avvaledu.</p>';
+      }
+
+      $("lookupResult").innerHTML =
+        '<div class="booking-item">' +
+          '<h3>' + escapeHtml(booking.service) + '</h3>' +
+          '<span class="status">' + escapeHtml(booking.status || "Pending") + '</span>' +
+          '<p><b>Booking ID:</b> ' + escapeHtml(snapshot.id) + '</p>' +
+          '<p><b>Preferred date:</b> ' + escapeHtml(booking.appointmentDate || "") + '</p>' +
+          '<p><b>Preferred time:</b> ' + escapeHtml(booking.appointmentTime || "") + '</p>' +
+          finalAppointment +
+        '</div>';
+
+      setMessage("lookupMsg", "Booking details loaded.");
+    }catch(error){
+      console.error(error);
+      setMessage("lookupMsg", "Could not check booking: " + getErrorMessage(error));
+    }
+  });
+    $("adminForm").addEventListener("submit", async function(event){
+    event.preventDefault();
+
+    const submitButton = $("adminSubmit");
+    submitButton.disabled = true;
+    setMessage("adminMsg", "Signing in...");
+
+    try{
+      ensureFirebase();
+
+      const email = $("adminEmail").value.trim().toLowerCase();
+      const password = $("adminPassword").value;
+
+      if(email !== ADMIN_EMAIL.toLowerCase()){
+        throw new Error("Admin email correct ga enter cheyyi.");
+      }
+
+      await auth.signInWithEmailAndPassword(email, password);
+
+      $("adminPassword").value = "";
+      $("logoutBtn").classList.remove("hidden");
+      setMessage("adminMsg", "Admin sign in successful.");
+
+      await loadAdminBookings();
+    }catch(error){
+      console.error(error);
+      setMessage("adminMsg", "Sign in failed: " + getErrorMessage(error));
+    }finally{
+      submitButton.disabled = false;
+    }
+  });
+
+  $("logoutBtn").addEventListener("click", async function(){
+    try{
+      if(auth){
+        await auth.signOut();
+      }
+
+      $("logoutBtn").classList.add("hidden");
+      $("adminPassword").value = "";
+      setMessage("adminMsg", "Signed out.");
+      setMessage("adminBookings", "Sign in to see bookings.");
+
+      try{
+        await auth.signInAnonymously();
+      }catch(error){
+        console.warn(error);
+      }
+    }catch(error){
+      setMessage("adminMsg", "Sign out failed: " + getErrorMessage(error));
+    }
+  });
+
+  async function loadAdminBookings(){
+    try{
+      ensureFirebase();
+
+      const user = auth.currentUser;
+      if(!user || !user.email ||
+         user.email.toLowerCase() !== ADMIN_EMAIL.toLowerCase()){
+        setMessage("adminBookings", "Admin sign in avvali.");
+        return;
+      }
+
+      setMessage("adminBookings", "Loading bookings...");
+
+      const snapshot = await db.collection("bookings")
+        .orderBy("createdAt", "desc")
+        .limit(100)
+        .get();
+
+      if(snapshot.empty){
+        setMessage("adminBookings", "No bookings yet.");
+        return;
+      }
+
+      $("adminBookings").innerHTML = "";
+
+      snapshot.forEach(function(documentSnapshot){
+        const booking = documentSnapshot.data();
+        const bookingId = documentSnapshot.id;
+        const item = document.createElement("div");
+
+        item.className = "booking-item";
+
+        item.innerHTML =
+          '<h3>' + escapeHtml(booking.customerName || "Customer") + '</h3>' +
+          '<span class="status">' + escapeHtml(booking.status || "Pending") + '</span>' +
+          '<p><b>Service:</b> ' + escapeHtml(booking.service || "") + '</p>' +
+          '<p><b>Phone:</b> ' + escapeHtml(booking.customerPhone || "") + '</p>' +
+          '<p><b>Booking ID:</b> ' + escapeHtml(bookingId) + '</p>' +
+          '<p><b>Preferred date:</b> ' + escapeHtml(booking.appointmentDate || "") + '</p>' +
+          '<p><b>Preferred time:</b> ' + escapeHtml(booking.appointmentTime || "") + '</p>' +
+          '<p><b>Notes:</b> ' + escapeHtml(booking.notes || "—") + '</p>' +
+          '<label>Final appointment date</label>' +
+          '<input type="date" class="final-date">' +
+          '<label>Final appointment time</label>' +
+          '<input type="time" class="final-time-input">' +
+          '<div class="admin-actions">' +
+            '<select class="status-select" aria-label="Booking status">' +
+              '<option value="Pending">Pending</option>' +
+              '<option value="Confirmed">Confirmed</option>' +
+              '<option value="Completed">Completed</option>' +
+              '<option value="Cancelled">Cancelled</option>' +
+            '</select>' +
+            '<button class="gold save-update" type="button">Save Update</button>' +
+          '</div>' +
+          '<p class="final-time"></p>' +
+          '<p class="notice" role="status"></p>';
+
+        const dateInput = item.querySelector(".final-date");
+        const timeInput = item.querySelector(".final-time-input");
+        const statusSelect = item.querySelector(".status-select");
+        const saveButton = item.querySelector(".save-update");
+        const resultText = item.querySelector(".notice");
+        const finalText = item.querySelector(".final-time");
+
+        dateInput.min = localToday;
+        dateInput.value = booking.finalDate || "";
+        timeInput.value = booking.finalTime || "";
+        statusSelect.value = booking.status || "Pending";
+
+        if(booking.status === "Confirmed" && booking.finalDate && booking.finalTime){
+          finalText.textContent =
+            "Confirmed appointment: " + booking.finalDate + " at " + booking.finalTime;
+        }
+
+        saveButton.addEventListener("click", async function(){
+          saveButton.disabled = true;
+          resultText.textContent = "Saving...";
+
+          try{
+            const newStatus = statusSelect.value;
+            const finalDate = dateInput.value;
+            const finalTime = timeInput.value;
+
+            if(newStatus === "Confirmed" && (!finalDate || !finalTime)){
+              throw new Error("Confirmed status ki final date and time enter cheyyali.");
+            }
+
+            const updateData = {
+              status: newStatus,
+              finalDate: newStatus === "Confirmed" ? finalDate : "",
+              finalTime: newStatus === "Confirmed" ? finalTime : "",
+              updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+            };
+
+            await db.collection("bookings").doc(bookingId).update(updateData);
+
+            resultText.textContent = "Booking updated successfully.";
+
+            if(newStatus === "Confirmed"){
+              finalText.textContent =
+                "Confirmed appointment: " + finalDate + " at " + finalTime;
+            }else{
+              finalText.textContent = "";
+            }
+
+            item.querySelector(".status").textContent = newStatus;
+
+          }catch(error){
+            console.error(error);
+            resultText.textContent = "Update failed: " + getErrorMessage(error);
+          }finally{
+            saveButton.disabled = false;
+          }
+        });
+
+        $("adminBookings").appendChild(item);
+      });
+
+    }catch(error){
+      console.error(error);
+      setMessage("adminBookings", "Could not load bookings: " + getErrorMessage(error));
+    }
+  }
+
+  $("refreshBtn").addEventListener("click", loadAdminBookings);
+
+  initializeFirebase();
+})();
+</script>
+</body>
+</html>
